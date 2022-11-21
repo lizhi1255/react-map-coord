@@ -83,29 +83,29 @@ yan add element-plus
   ```js
   // 回调参数
   {
-  	lng:string|number, //经度
-  	lat:string|number, //纬度
-  	position:string|number[], //经纬度数组[经度，纬度]
-  	address:Address, //地址对象
-  	formattedAddress:string //地址
+      lng:string|number, //经度
+      lat:string|number, //纬度
+      position:string|number[], //经纬度数组[经度，纬度]
+      address:Address, //地址对象
+      formattedAddress:string //地址
   };
   // address类型
   interface Address{
-  	addressComponent: {
-  	citycode:string,
-  	adcode:string,
-  	businessAreas:string[],
-  	neighborhoodType:string,
-  	neighborhood: string,
-  	province: string,
-  	street: string,
-  	streetNumber: string,
-  	township: string
-  	},
-  	crosses: string[],
-  	formattedAddress: string,
-  	pois: string[],
-  	roads: string[]
+      addressComponent: {
+          citycode:string,
+          adcode:string,
+          businessAreas:string[],
+          neighborhoodType:string,
+          neighborhood: string,
+          province: string,
+          street: string,
+          streetNumber: string,
+          township: string
+      },
+      crosses: string[],
+      formattedAddress: string,
+      pois: string[],
+      roads: string[]
   };
   ```
 
@@ -134,14 +134,14 @@ yan add element-plus
 
 ```react
 import React, { useRef, useState } from "react";
-import CoordMap from "react-map-coordx";
+import CoordMap, { CoordChangeProps, CoordMapExpose } from "react-map-coord";
 
 const Example = () => {
-  const onCoordChange = (value: any) => {
+  const onCoordChange = (value: CoordChangeProps) => {
     console.log(value);
   };
   const [position, setPosition] = useState([120.405985, 36.120701]);
-  const CoordMapRef = useRef<any>();
+  const CoordMapRef = useRef<CoordMapExpose>();
 
   return (
       <div style={{ height: "600px" }}>
