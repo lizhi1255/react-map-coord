@@ -27662,15 +27662,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 var Switch$1 = Switch;
 
-var propsDefault = {
-  mapKey: "",
-  mapConfig: {
-    width: "100%",
-    height: "100%",
-    satellite: false,
-    zoom: 10
-  }
-};
 // 新值!==旧值 触发
 var useLazyEffect = function useLazyEffect(effect, deps) {
   var oldValue = useRef(deps);
@@ -27713,6 +27704,15 @@ var Debounce = /** @class */function () {
   };
   return Debounce;
 }();
+var propsDefault = {
+  mapKey: "",
+  mapConfig: {
+    width: "100%",
+    height: "100%",
+    satellite: false,
+    zoom: 10
+  }
+};
 var CoordMap = /*#__PURE__*/forwardRef(function (props, ref) {
   var _a, _b, _c;
   if (props === void 0) {

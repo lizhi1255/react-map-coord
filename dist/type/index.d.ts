@@ -5,6 +5,13 @@ var css_248z = ".spinWrap,.spinWrap .ant-spin-container{height:100%;width:100%}.
 styleInject(css_248z);
 
 type SORN = string | number;
+interface CoordChangeProps {
+    lng: SORN;
+    lat: SORN;
+    position: SORN[];
+    address: Address;
+    formattedAddress: string;
+}
 interface Props {
     mapKey: string;
     mapConfig?: {
@@ -15,13 +22,7 @@ interface Props {
         satellite?: boolean;
     };
     position?: SORN[];
-    onCoordChange?: (props: {
-        lng: SORN;
-        lat: SORN;
-        position: SORN[];
-        address: Address;
-        formattedAddress: string;
-    }) => void;
+    onCoordChange?: (props: CoordChangeProps) => void;
 }
 interface Address {
     addressComponent: {

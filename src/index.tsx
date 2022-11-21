@@ -3,14 +3,18 @@ import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { Button } from "antd";
 import CoordMap from "./packages";
+import {
+  CoordChangeProps,
+  CoordMapExpose,
+} from "./packages/components/CoordMap";
 
 const Example = () => {
-  const onCoordChange = (value: any) => {
+  const onCoordChange = (value: CoordChangeProps) => {
     console.log(value);
   };
   const [position, setPosition] = useState([120.405985, 36.120701]);
   const [show, setShow] = useState(true);
-  const CoordMapRef = useRef<any>();
+  const CoordMapRef = useRef<CoordMapExpose>();
   const switchShow = () => {
     setShow(!show);
     if (!show && CoordMapRef.current) {

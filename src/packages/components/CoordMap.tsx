@@ -21,6 +21,14 @@ import {
 
 type SORN = string | number;
 
+export interface CoordChangeProps {
+  lng: SORN;
+  lat: SORN;
+  position: SORN[];
+  address: Address;
+  formattedAddress: string;
+}
+
 interface Props {
   mapKey: string; //高德地图key
   mapConfig?: {
@@ -32,24 +40,8 @@ interface Props {
     satellite?: boolean; //是否开启卫星图
   };
   position?: SORN[]; //[lng,lat]
-  onCoordChange?: (props: {
-    lng: SORN;
-    lat: SORN;
-    position: SORN[];
-    address: Address;
-    formattedAddress: string;
-  }) => void;
+  onCoordChange?: (props: CoordChangeProps) => void;
 }
-
-const propsDefault: Props = {
-  mapKey: "",
-  mapConfig: {
-    width: "100%",
-    height: "100%",
-    satellite: false,
-    zoom: 10,
-  },
-};
 
 interface Address {
   addressComponent: {
@@ -67,6 +59,11 @@ interface Address {
   formattedAddress: string;
   pois: string[];
   roads: string[];
+}
+
+export interface CoordMapExpose {
+  resetMap: (posClear?: boolean) => void;
+  destroyMap: () => void;
 }
 
 // 新值!==旧值 触发
@@ -109,8 +106,18 @@ class Debounce {
   }
 }
 
+const propsDefault: Props = {
+  mapKey: "",
+  mapConfig: {
+    width: "100%",
+    height: "100%",
+    satellite: false,
+    zoom: 10,
+  },
+};
+
 const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle<unknown, CoordMapExpose>(ref, () => ({
     resetMap,
     destroyMap,
   }));

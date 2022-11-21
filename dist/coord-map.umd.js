@@ -27687,15 +27687,6 @@
     }
     var Switch$1 = Switch;
 
-    var propsDefault = {
-      mapKey: "",
-      mapConfig: {
-        width: "100%",
-        height: "100%",
-        satellite: false,
-        zoom: 10
-      }
-    };
     // 新值!==旧值 触发
     var useLazyEffect = function useLazyEffect(effect, deps) {
       var oldValue = React.useRef(deps);
@@ -27738,6 +27729,15 @@
       };
       return Debounce;
     }();
+    var propsDefault = {
+      mapKey: "",
+      mapConfig: {
+        width: "100%",
+        height: "100%",
+        satellite: false,
+        zoom: 10
+      }
+    };
     var CoordMap = /*#__PURE__*/React.forwardRef(function (props, ref) {
       var _a, _b, _c;
       if (props === void 0) {
