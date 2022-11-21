@@ -2,11 +2,7 @@ import "./index.css";
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { Button } from "antd";
-import CoordMap from "./packages";
-import {
-  CoordChangeProps,
-  CoordMapExpose,
-} from "./packages/components/CoordMap";
+import CoordMap, { CoordChangeProps, CoordMapExpose } from "./packages";
 
 const Example = () => {
   const onCoordChange = (value: CoordChangeProps) => {

@@ -41,6 +41,10 @@ interface Address {
     pois: string[];
     roads: string[];
 }
+interface CoordMapExpose {
+    resetMap: (posClear?: boolean) => void;
+    destroyMap: () => void;
+}
 declare const CoordMap: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;
 
-export { CoordMap as default };
+export { CoordChangeProps, CoordMapExpose, CoordMap as default };
