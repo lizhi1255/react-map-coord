@@ -5,6 +5,8 @@ import { Button } from "antd";
 import CoordMap, { CoordChangeProps, CoordMapExpose } from "./packages";
 
 const Example = () => {
+  const MAP_KEY = "高德地图key"; //请更换为你的高德地图key
+
   const onCoordChange = (value: CoordChangeProps) => {
     console.log(value);
   };
@@ -28,7 +30,7 @@ const Example = () => {
         {/* {show && ( */}
         <CoordMap
           ref={CoordMapRef}
-          mapKey='高德地图key'
+          mapKey={MAP_KEY}
           onCoordChange={onCoordChange}
           position={position}
         />
