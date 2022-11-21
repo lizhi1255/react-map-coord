@@ -1,6 +1,6 @@
 {
   "name": "react-map-coord",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "author": "lizhi",
   "description": "coordinate pickup tool based on react and GaoDe map",

@@ -60,7 +60,7 @@ export default () => {
     },
     {
       input: entry,
-      output: { dir: "dist/type" },
+      output: { dir: "dist/types" },
       plugins: [...commonPlugins, dts()],
     },
   ];
