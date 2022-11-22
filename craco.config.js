@@ -1,7 +1,18 @@
 const CracoLessPlugin = require("craco-less");
 
 module.exports = {
-  plugins: [{ plugin: CracoLessPlugin }],
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
   webpack: {
     configure: (webpackConfig) => {
       const scopePluginIndex = webpackConfig.resolve.plugins.findIndex(
@@ -12,5 +23,17 @@ module.exports = {
       webpackConfig.resolve.plugins.splice(scopePluginIndex, 1);
       return webpackConfig;
     },
+  },
+  babel: {
+    plugins: [
+      [
+        "import",
+        {
+          libraryName: "antd",
+          libraryDirectory: "es",
+          style: true,
+        },
+      ],
+    ],
   },
 };

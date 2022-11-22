@@ -1,3 +1,5 @@
+import "./CoordMap.less";
+
 import React, {
   EffectCallback,
   forwardRef,
@@ -7,7 +9,6 @@ import React, {
   useState,
 } from "react";
 import AMapLoader from "@amap/amap-jsapi-loader";
-import "./CoordMap.less";
 import {
   Button,
   Card,
@@ -129,6 +130,8 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
   const [initCenter, setInitCenter] = useState();
 
   useEffect(() => {
+    console.log(props);
+
     initMap();
   }, []);
 

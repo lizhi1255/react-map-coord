@@ -1,7 +1,5 @@
-import "./index.css";
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { Button } from "antd";
 import CoordMap, { CoordChangeProps, CoordMapExpose } from "./packages";
 
 const Example = () => {
@@ -22,7 +20,7 @@ const Example = () => {
 
   return (
     <>
-      <Button onClick={switchShow}>切换</Button>
+      <button onClick={switchShow}>切换</button>
       <div
         className='Example'
         style={{ height: "600px", display: show ? "block" : "none" }}
