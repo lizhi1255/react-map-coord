@@ -6,8 +6,16 @@ const { version: currentVersion } = require("../package.json");
 const { prompt } = require("enquirer");
 const execa = require("execa");
 
-// 版本类型
-const versionIncrements = ["patch", "minor", "major"];
+// 发版类型
+const versionIncrements = [
+  "patch",
+  "minor",
+  "major",
+  "prepatch",
+  "preminor",
+  "premajor",
+  "prerelease",
+];
 
 // 步骤打印
 const step = (msg) => console.log(chalk.green(msg));
