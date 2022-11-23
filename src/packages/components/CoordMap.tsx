@@ -1,7 +1,6 @@
 import "./CoordMap.less";
 
 import React, {
-  EffectCallback,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -67,17 +66,6 @@ export interface CoordMapExpose {
   destroyMap: () => void;
 }
 
-// 新值!==旧值 触发
-const useLazyEffect = (effect: EffectCallback, deps: any) => {
-  const oldValue = useRef(deps);
-
-  useEffect(() => {
-    if (oldValue.current.join() === deps.join()) return;
-    effect();
-    oldValue.current = deps;
-  }, deps);
-};
-
 // useDebounce 防抖
 const useDebounce = <T,>(value: T, delay?: number): T => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -130,8 +118,6 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
   const [initCenter, setInitCenter] = useState();
 
   useEffect(() => {
-    console.log(props);
-
     initMap();
   }, []);
 
@@ -291,22 +277,20 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
   }
   const [results, setResults] = useState<Results[]>([]);
   const [total, setTotal] = useState(0);
-  const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
-  const search = (clear: boolean = false) => {
+  const search = (clear: boolean = false, val?: any) => {
     setMode("result");
+    setSearching(true);
 
     if (clear) {
       setResults([]);
       setTotal(0);
-      setPageIndex(1);
       PlaceSearch.setPageIndex(1);
     }
 
-    setSearching(true);
     PlaceSearch.search(
-      query,
+      val || query,
       (
         status: string,
         result: { poiList: { pois: Results[]; count: number } }
@@ -322,6 +306,12 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
       }
     );
   };
+  const pageChange = (pageIndex: number) => {
+    if (!PlaceSearch || searching) return;
+    PlaceSearch.setPageIndex(pageIndex);
+    search(false);
+  };
+
   const reset = () => {
     setTips([]);
     setMode("search");
@@ -334,12 +324,6 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
     setPosition([...pos]);
     Map.setCenter([...pos]);
   };
-
-  useLazyEffect(() => {
-    if (!PlaceSearch) return;
-    PlaceSearch.setPageIndex(pageIndex);
-    search(false);
-  }, [pageIndex]);
 
   // 是否是手机端
   const [isMobileIphone, setIsMobileIphone] = useState(
@@ -386,7 +370,7 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
             <Card
               bodyStyle={{
                 maxHeight: "450px",
-                overflowY: "scroll",
+                overflowY: "auto",
                 padding: mode === "result" ? "24px" : 0,
               }}
               className='result-panel'
@@ -399,7 +383,7 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
                       placeholder='输入关键词'
                       style={{ flex: 1 }}
                       onSearch={autoComplete}
-                      onSelect={() => search(true)}
+                      onSelect={(e: any) => search(true, e)}
                       onChange={setQuery}
                       allowClear
                     />
@@ -433,24 +417,24 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
                   header={
                     total > 0 && (
                       <Pagination
-                        defaultCurrent={pageIndex}
+                        defaultCurrent={1}
                         page-size={pageSize}
                         total={total}
                         size='small'
                         showSizeChanger={false}
-                        onChange={setPageIndex}
+                        onChange={pageChange}
                       />
                     )
                   }
                   footer={
                     total > 0 && (
                       <Pagination
-                        defaultCurrent={pageIndex}
+                        defaultCurrent={1}
                         page-size={pageSize}
                         total={total}
                         size='small'
                         showSizeChanger={false}
-                        onChange={setPageIndex}
+                        onChange={pageChange}
                       />
                     )
                   }

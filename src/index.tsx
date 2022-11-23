@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import CoordMap, { CoordChangeProps, CoordMapExpose } from "./packages";
 
