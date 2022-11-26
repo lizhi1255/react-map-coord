@@ -4,7 +4,7 @@
 
 ## 效果展示
 
-![image](/src/images/example.gif)
+![image](./src/images/example.gif)
 
 ## 安装
 
@@ -128,7 +128,7 @@ yan add element-plus
 
 ## 注意项
 
-> 组件所在容器需设置高度，或者在配置项属性里设置组件的高度，如 :mapCofing="{height:'600px'}"
+> 组件所在容器需设置高度，或者在配置项属性里设置组件的高度
 
 ## 使用
 
