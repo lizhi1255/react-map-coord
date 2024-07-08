@@ -19,6 +19,12 @@ import {
   Switch,
 } from "antd";
 
+declare global {
+  interface Window {
+    _AMapSecurityConfig: { securityJsCode: string };
+  }
+}
+
 type SORN = string | number;
 
 export interface CoordChangeProps {
@@ -31,6 +37,7 @@ export interface CoordChangeProps {
 
 interface Props {
   mapKey: string; //高德地图key
+  securityJsCode?: string; //高德地图安全密钥
   mapConfig?: {
     //地图配置
     width?: string; //地图宽度
@@ -124,6 +131,9 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
   const initMap = async () => {
     if (AMap && Map) return;
     setInitLoading(true);
+    window._AMapSecurityConfig = {
+      securityJsCode: props.securityJsCode || "",
+    };
     const aMap = await AMapLoader.load({
       key: props.mapKey,
       version: "2.0",

@@ -142,7 +142,7 @@ const Example = () => {
   const onCoordChange = (value: CoordChangeProps) => {
     console.log(value);
   };
-  const [position, setPosition] = useState([120.405985, 36.120701]);
+  const [position, setPosition] = useState([120.382665, 36.066938]);
   const CoordMapRef = useRef<CoordMapExpose>();
 
   return (
@@ -150,6 +150,7 @@ const Example = () => {
         <CoordMap
           ref={CoordMapRef}
           mapKey='高德地图key'
+          securityJsCode="高德地图安全码"
           onCoordChange={onCoordChange}
           position={position}
         />
