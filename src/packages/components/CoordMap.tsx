@@ -366,7 +366,7 @@ const CoordMap = forwardRef((props: Props = propsDefault, ref) => {
   };
 
   return (
-    <Spin spinning={initLoading} size='large' wrapperClassName='spinWrap'>
+    <Spin spinning={false} size='large' wrapperClassName={"coordMap-fa46s5764"}>
       <main className='map-container'>
         <div
           id='map'
